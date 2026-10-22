@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-11T04:46:37.717133+00:00",
+  "scope": "Latest recovered runs of the three original experiments. Additional faults and combinations remain in experiment history.",
+  "coverage": {
+    "measured": 3,
+    "expected": 3
+  },
+  "overall_score": 74.3,
+  "experiment_ids": [
+    "db093e1e",
+    "ea692ed5",
+    "20061a38"
+  ],
+  "insights": [
+    {
+      "title": "Evaluate automated process health monitoring",
+      "priority": "HIGH",
+      "target": "contacts",
+      "hypothesis": "If automated monitoring detects paused processes, then the system can trigger alerts or auto-unpause to reduce MTTR.",
+      "evidence_refs": [
+        "observation-1",
+        "observation-2"
+      ],
+      "verification": "Verify that alerts trigger when a container enters a paused state.",
+      "configuration_status": "not-inspected",
+      "experiment_id": "ea692ed5",
+      "experiment_type": "contacts-pause",
+      "fault_name": "Contacts hang",
+      "source": "gemini"
+    },
+    {
+      "title": "Evaluate automated restart policy",
+      "priority": "HIGH",
+      "target": "ledgerwriter",
+      "hypothesis": "If the orchestrator is configured with an appropriate restart policy, then the service will recover automatically from unexpected shutdowns.",
+      "evidence_refs": [
+        "target-logs",
+        "observation-1"
+      ],
+      "verification": "Verify orchestrator configuration for restart-on-failure policies.",
+      "configuration_status": "not-inspected",
+      "experiment_id": "20061a38",
+      "experiment_type": "ledgerwriter-outage",
+      "fault_name": "LedgerWriter outage",
+      "source": "gemini"
+    },
+    {
+      "title": "Evaluate automated network anomaly detection",
+      "priority": "MEDIUM",
+      "target": "ledgerwriter",
+      "hypothesis": "If automated alerts for high-latency network policies are implemented, then response time to injected impairments will decrease.",
+      "evidence_refs": [
+        "network-policy",
+        "observation-1"
+      ],
+      "verification": "Monitor alert triggers during future network-related experiments.",
+      "configuration_status": "not-inspected",
+      "experiment_id": "db093e1e",
+      "experiment_type": "network-slowdown",
+      "fault_name": "Network slowdown",
+      "source": "gemini"
+    },
+    {
+      "title": "Evaluate shutdown signal handling",
+      "priority": "MEDIUM",
+      "target": "ledgerwriter",
+      "hypothesis": "Whether the service is receiving unexpected SIGTERM signals, then investigating the source of the shutdown signal will prevent future outages.",
+      "evidence_refs": [
+        "target-logs"
+      ],
+      "verification": "Review system and application logs for external signals triggering the shutdown hook.",
+      "configuration_status": "not-inspected",
+      "experiment_id": "20061a38",
+      "experiment_type": "ledgerwriter-outage",
+      "fault_name": "LedgerWriter outage",
+      "source": "gemini"
+    }
+  ],
+  "content_sha256": "59eabd46085fa66c1e2ac9a4d3d3b2e81ae78cd75a21585d21c0696f31581c57"
+}
